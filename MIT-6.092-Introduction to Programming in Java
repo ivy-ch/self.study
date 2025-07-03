@@ -1,0 +1,35 @@
+Assignment 2: Calculate Salary
+//An employee gets paid (hours worked) × (base pay), for each hour up to 40 hours.
+//For every hour over 40, they get overtime = (base pay) × 1.5.
+//The base pay must not be less than the minimum wage ($8.00 an hour). If it is, print an error.
+//If the number of hours is greater than 60, print an error message
+
+class FooCooperation {
+    public static void pay(double basePay, double hoursWorked) {
+        double overtimePay;
+        double totalPay;
+
+        if (basePay < 8.00) {
+            System.out.println("Error: Base pay must not be less than the minimum wage of $8.00.");
+            return;
+        }
+
+        if (hoursWorked < 0 || hoursWorked > 60) {
+            System.out.println("Error: The number of hours must be between 0 and 60.");
+            return;
+        }
+
+        if (hoursWorked<= 40) {
+            totalPay = hoursWorked * basePay;
+        } else {
+            overtimePay = (hoursWorked - 40) * (basePay * 1.5);
+            totalPay = (40 * basePay) + overtimePay;
+        }
+        System.out.printf("Total pay for %.2f hours at base pay of $%.2f is $%.2f%n", hoursWorked, basePay, totalPay);
+    }
+    public static void main(String[] arguments) {
+        pay(7.5, 35);
+        pay(8.2, 47);
+        pay(10.0, 73);
+    }
+}
